@@ -9,7 +9,6 @@ Bundle 'gmarik/vundle'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
-
 ":1 Plugin - NERDTree
 Bundle 'scrooloose/nerdtree'
 
@@ -21,7 +20,11 @@ let g:NERDTreeMapOpenVSplit = 'a'
 let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeWinPos = 'right'
 let g:NERDTreeQuitOnOpen = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodeDefaultSymbol = ''
 
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['nerdtree'] = ''
 let g:NERDTreeBookmarksFile = $HOME . '/.vim/.nerdtree-bookmarks'
 
 let NERDTreeIgnore=[
@@ -50,34 +53,50 @@ let g:syntastic_auto_loc_list = 0
 
 ":1 Plugins
 " Features
+Plugin 'octol/vim-cpp-enhanced-highlight'
 Bundle 'godlygeek/tabular'
-
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'mklabs/split-term.vim'
 Plugin 'ryym/vim-riot'
 Bundle 'hynek/vim-python-pep8-indent'
 Plugin 'pangloss/vim-javascript'
 Plugin 'wavded/vim-stylus'
+Plugin 'burnettk/vim-angular'
+Plugin 'jvanja/vim-bootstrap4-snippets'
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
+let g:jsx_pragma_required = 1
 
-Plugin 'itchyny/lightline.vim'
-set laststatus=2
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [],
-      \             [ 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ }
-" endfold
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
-":1 Standard (frozen) configurations
+"1 Standard (frozen) configurations
 syntax on                              " Enable syntax hightlight
 filetype off                           " Disable file type detection
 filetype plugin on                     " Enable plugins
 filetype indent on                     " Enable indent
 
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+let g:airline_powerline_fonts = 1
 set nocompatible                       " Enable VIM features
 set number                             " Enable line numbers
 set autoindent                         " Enable auto indent
 set nobackup nowritebackup noswapfile  " Disable backup
+set title
+set background=dark
+set t_Co=256
 
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+
+" Always show statusline
+"
+let g:solarized_termcolors = 256  " New line!!
+
+set laststatus=2
 set hlsearch                           " Highlight search result
 set encoding=utf-8                     " Preferred encoding
 set nobomb                             " Unicode without BOM (Byte Order Mark)
@@ -87,7 +106,6 @@ set wildmenu                           " Show autocomplete menus
 set autoread                           " Auto update if changed outside of Vim
 set noerrorbells novisualbell          " No sound on errors
 set backspace=indent,eol,start         " Allow backspace in insert mode
-
 ":1 Configurations may change
 set numberwidth=4                      " Line number width
 set shellslash                         " Always use unix style slash /
@@ -193,5 +211,4 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Filetype
 autocmd FileType python setlocal foldmethod=syntax foldtext=PythonFoldText()
 
-so $HOME/.vim/dvorak.vimrc
 so $HOME/.vim/filetype.vimrc
